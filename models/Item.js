@@ -1,8 +1,13 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
 const noEmptyFieldValidator = [input => (input.trim().length) > 0, '{PATH} cannot be empty'];
+const onlyWholeNumbersValidator = [
+    num => (num % 1 === 0) && (num >= 0), 
+    '{PATH} must be a whole number greater than or equal to zero'
+];
 
-const itemSchema = new Schema({
+let itemSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -46,70 +51,16 @@ const itemSchema = new Schema({
     },
     stockUnits: {
         type: Number,
-        trim: true,
-        
+        validate: onlyWholeNumbersValidator,
+    },
+    stockPounds: {
+        type: Number,
+        validate: onlyWholeNumbersValidator,
     }
 });
 
-// Virtual for item's URL
-ItemSchema.virtual('url').get(function() {
+itemSchema.virtual('url').get(function() {
     return '/inventory/item' + this._id;
 });
 
-// Virtual for inventory of the item in question
-ItemSchema.virtual('stock', {
-    ref: 'ItemInstance',
-    localField: '_id',
-    foreignField: 'item',
-});mongoose
-
-// Virtual for number the number of the item instanes "in stock" (eg. available to be sold)
-// This is the virtual that I'm having trouble writing
-ItemSchema.virtual('numberAvailable', {
-    ref: 'ItemInstance',
-    localField: '_id',
-    foreignField: 'item',
-    options: {
-        match: {
-            status: 'Available',
-        },
-    },
-    count: true,
-});
-
-ItemSchema.virtual('departmentURL').get(function() {
-    let ending;
-    switch(this.department) {
-        case 'Meat and Seafood':
-            ending = 'meat-seafood';
-            break;
-        case 'Beer and Wine':
-            ending = 'beer-wine';
-            break;
-        case 'Health and Beauty':
-            ending = 'health-beauty';
-            break;
-        case 'Deli/Prepared Foods':
-            ending = 'deli-prepared-foods';
-            break;
-        case 'Front End':
-            ending = 'front-end';
-            break;
-        case 'Canned/Jarred Goods':
-            ending = 'canned';
-            break;
-        case 'Baking Goods':
-            ending = 'baking';
-            break;
-        case 'Paper Goods':
-            ending = 'paper';
-            break;
-        default: 
-            ending = this.department.toLowerCase();
-            break;
-    }
-    return '/inventory/' + ending;
-});
-
-
-export default mongoose.model('Item', ItemSchema);
+module.exports = model('Item', itemSchema);
