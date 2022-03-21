@@ -31,7 +31,21 @@ app.use(function(req, res, next) {
 });
 
 mongoose.connect(
- 
+    'mongodb+srv://supermarket_2_mrd2689a:Kffm2YrahJ5&Zh@supermarket-2.znxwh.mongodb.net/supermarket-2?'
+    + '=retryWrites=true&w=majority',
+    { useNewUrlParser: true}
+);
+
+const db = mongoose.connection;
+db.on('error', (err) => debug(`Connection error: ${err}`));
+db.once('open', () => {
+    debug('Connected to MongoDB');
+
+    app.listen(app.get('port'), () => {
+        debug(`Server Listening on port ${app.get('port')}`);
+    });
+});
+
 
 // error handler
 app.use(function(err, req, res, next) {
