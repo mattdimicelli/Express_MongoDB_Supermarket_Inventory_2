@@ -10,14 +10,19 @@ let departmentSchema = new Schema({
     name: {
         type: String,
         trim: true,
+        req: true,
+        set: n => n.toUpperCase(),
     },
     supervisor: {
         type: String,
         trim: true,
+        req: true,
+        set: n => n.toUpperCase(),
     },
     extension: {
         type: Number,
         validate: onlyWholeNumbersValidator,
+        req: true,
     }
 });
 

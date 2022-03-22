@@ -35,6 +35,7 @@ let itemSchema = new Schema({
     details: {
         type: String,
         trim: true,
+        set: n => n.toUpperCase(),
     },
     pricePerUnit: {
         type: Number,
