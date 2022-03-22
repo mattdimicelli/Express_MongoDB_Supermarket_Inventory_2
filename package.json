@@ -7,6 +7,7 @@
     "build:css": "tailwindcss -i ./tailwind.css -o ./public/stylesheets/style.css"
   },
   "dependencies": {
+    "chalk": "^5.0.1",
     "cookie-parser": "~1.4.4",
     "daisyui": "^2.11.0",
     "debug": "~2.6.9",

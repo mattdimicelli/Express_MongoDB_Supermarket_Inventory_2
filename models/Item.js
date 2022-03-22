@@ -15,22 +15,9 @@ let itemSchema = new Schema({
         set: n => n.toUpperCase(),
         validate: noEmptyFieldValidator
     },
-    _departmentId: {
-        // this value is provided by MongoDB, not the user
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Department',  // the name of the model to reference
-    },
     department: {
-        type: String,
-        required: true,
-        enum: [
-            'PRODUCE', 'MEAT AND SEAFOOD', 'BEER AND WINE', 'HEALTH AND BEAUTY',
-            'DELI/PREPARED FOODS', 'FRONT END', 'FLORAL', 'CAFE', 'BAKERY', 'FROZEN', 'DAIRY', 
-            'BEVERAGES', 'CANNED GOODS', 'BAKING GOODS', 'CLEANING', 'PAPER GOODS'
-        ],
-        trim: true,
-        set: n => n.toUpperCase(),
-        validate: noEmptyFieldValidator,
+        type: Schema.Types.ObjectId,
+        ref: 'Department',
     },     
     details: {
         type: String,

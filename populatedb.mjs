@@ -1,29 +1,30 @@
 #! /usr/bin/env node
 
 console.log('This script populates some test items, iteminstances, and customers to the database.'  
-+ 'Specify the database as an arg - eg.: populatedb mongodb+srv://cooluser:coolpassword@cluster0.a'
-+ '9azn.mongodb.net/local_library?retryWrites=true'
++ 'Specify the database as an arg - eg.: populatedb.mjs mongodb+srv://cooluser:coolpassword@cluster'
++ '0a9azn.mongodb.net/local_library?retryWrites=true'
 );
 
 // Get arguments passed on command line
-var userArgs = process.argv.slice(2);
+const userArgs = process.argv.slice(2);
 
 if (!userArgs[0].startsWith('mongodb')) {
     console.log('ERROR: You need to specify a valid mongodb URL as the first argument');
     process.exit(1);
 }
 
-const Item = require('./models/Item.js');
-const Department = require('./models/Department.js');
-const mongoose = require('mongoose');
+import Item from './models/Item.js';
+import Department from './models/Department.js';
+import mongoose from 'mongoose';
+import chalk from 'chalk';
 
-var mongoDB = userArgs[0];
+const mongoDB = userArgs[0];
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB Connection Error: '));
 
-const items = [];
-const departments = [];
+let items = [];
+let departments = [];
 
 async function itemCreate({name, department, details = null, pricePerUnit = null, 
     pricePerPound = null, brand = null, stockUnits = null, stockPounds = null }) {
@@ -37,7 +38,7 @@ async function itemCreate({name, department, details = null, pricePerUnit = null
 
   const item = new Item(itemInfo);
   const savedItem = await item.save();
-  console.log('New Item: ' + savedItem);
+  console.log(chalk.blue('New Item: ' + savedItem));
   items.push(savedItem);
   return savedItem;
 }
@@ -45,27 +46,30 @@ async function itemCreate({name, department, details = null, pricePerUnit = null
 async function departmentCreate(name, supervisor, extension) {
   const department = new Department({ name, supervisor, extension });
   const savedDepartment = await department.save();
-  console.log('New Department: ' + savedDepartment);
+  console.log(chalk.red('New Department: ' + savedDepartment));
   departments.push(savedDepartment);
   return savedDepartment;
 }
 
 function createItems() {
+  const [produce, meatAndSeafood, beerAndWine, healthAndBeauty, deliPreparedFoods, frontEnd,
+    floral, cafe, bakery, frozen, dairy, beverages, cannedGoods, bakingGoods, cleaning,
+    paperGoods] = departments;
   return Promise.all([
-    itemCreate({name: 'apple, gala', department: 'Produce', pricePerPound: 0.83, }),
-    itemCreate({name: 'grapes', department: 'Produce', pricePerPound: 1.28 }),
-    itemCreate({name: "Reynolds Wrap, HEAVY DUTY", department: 'Paper Goods', 
+    itemCreate({name: 'apple, gala', department: produce, pricePerPound: 0.83, }),
+    itemCreate({name: 'grapes', department: produce, pricePerPound: 1.28 }),
+    itemCreate({name: "Reynolds Wrap, HEAVY DUTY", department: paperGoods, 
       details: '50 sq ft', pricePerUnit: 3.97, brand: 'Reynolds'}),
-    itemCreate({name: 'Talenti Gelato, chocolate peanut butter cup', department: 'Frozen', 
+    itemCreate({name: 'Talenti Gelato, chocolate peanut butter cup', department: frozen, 
       pricePerUnit: 4.98, brand: 'Talenti',}),
-    itemCreate({name: "Crunchy Breaded Fish Sticks", department: 'Frozen', pricePerUnit: 6.48, 
+    itemCreate({name: "Crunchy Breaded Fish Sticks", department: frozen, pricePerUnit: 6.48, 
       brand: "Gorton's" }),
-    itemCreate({name: 'Lactaid 1% Calcium Fortified', department: 'Dairy', pricePerUnit: 3.89, 
+    itemCreate({name: 'Lactaid 1% Calcium Fortified', department: dairy, pricePerUnit: 3.89, 
       brand: 'Lactaid' }),
-    itemCreate({name: 'mussels', department: 'Meat and Seafood', details: 'wild caught', 
+    itemCreate({name: 'mussels', department: meatAndSeafood, details: 'wild caught', 
       pricePerPound: 4.99, stockPounds: 17 }),
     itemCreate({name: 'Colgate Total Advanced Whitening Toothpaste', stockUnits: 10,
-      department: 'Health and Beauty', details: '6.4oz', pricePerUnit: 3.98, brand: 'Colgate'})
+      department: healthAndBeauty, details: '6.4oz', pricePerUnit: 3.98, brand: 'Colgate'})
   ]);
 }
 
@@ -94,12 +98,14 @@ function createDepartments() {
 
 (async function populateDb() {
   try {
-    await createItems();
-    console.log('Items: ' + items);
     await createDepartments();
-    console.log('Departments: ' + departments);
-    console.log('First item URL:');
-    console.log(items[0].url);
+    console.log(chalk.magenta('Departments: ' + departments));
+    await createItems();
+    console.log(chalk.green('Items: ' + items));
+    console.log('First item:');
+    console.log(items[0]);
+    console.log(chalk.blue(`departments list length: ${departments.length}`));
+    console.log(chalk.blue(`items list length: ${items.length}`));
   }
   catch(err) {
     console.error('FINAL ERROR: ' + err);
