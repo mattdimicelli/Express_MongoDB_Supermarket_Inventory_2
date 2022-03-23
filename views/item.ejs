@@ -3,12 +3,11 @@
 <%- include('partials/_middle1') %>
 <main class="min-h-screen bg-base-100 w-full p-4">
     <div class="prose pb-4">
-        <h1>All Items</h1>
+        <h1><%= item.name %></h1>
     </div>
-    <table class="table table-zebra table-compact">
+    <table class="table table-zebra table-compact mb-4">
         <thead>
             <tr>
-                <th>Name</th>
                 <th>Dept</th>
                 <th>Brand</th>
                 <th>Details</th>
@@ -19,11 +18,9 @@
             </tr>
         </thead>
         <tbody>
-            <% items.map(item => { 
-                const {name, department, details = '--', pricePerUnit = '--', pricePerPound = '--', 
+            <% const { department, details = '--', pricePerUnit = '--', pricePerPound = '--', 
                 brand = '--', stockUnits = '--', stockPounds = '--' } = item; %>
             <tr>
-                <td><%= name  %></td>
                 <td><%= department.name %></td>
                 <td><%= brand %></td>
                 <td><%= details %></td>
@@ -32,8 +29,11 @@
                 <td><%= stockUnits %></td>
                 <td><%= stockPounds %></td>
             </tr>
-            <% }) %>
         </tbody>
     </table>
+    <div class="btn-group">
+        <button class="btn btn-primary ">Delete Item</button>
+        <button class="btn btn-secondary ">Update Item</button>
+    </div>
 </main>
 <%- include('partials/_bottom') %>
