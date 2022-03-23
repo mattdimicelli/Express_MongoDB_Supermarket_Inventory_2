@@ -3,7 +3,7 @@ const Department = require('../models/Department.js');
 
 // Display home page for inventory
 exports.homeGet = async (req, res) => {
-    const depts = await Department.find({}, 'name').sort({ 'name': 'asc' }).exec();
+    const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
     res.render('inventory', { depts: depts });
 }
 

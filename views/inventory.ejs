@@ -9,18 +9,21 @@
 </head>
 <body class="flex">
   <nav class="min-h-screen bg-secondary w-1/5">
-    <ul class="menu text-secondary-content">
-      <li><a class="link link-secondary" href="#">All items</a></li>
-      <li><a class="link link-secondary" href="#">All departments</a></li>
-      <li><a class="link link-secondary" href="#">Create new department</a></li>
-      <li><a class="link link-secondary" href="#">Create new item</a></li>
+    <ul class="menu menu-compact text-secondary-content">
+      <li><a class="uppercase" href="#">All items</a></li>
+      <li><a class="uppercase" href="#">All departments</a></li>
+      <li><a class="uppercase" href="#">Create new department</a></li>
+      <li><a class="uppercase" href="#">Create new item</a></li>
+      <li></li>
+      <li class="pl-2">Sort by...</li>
       <% depts.map(dept => { %>
-          <li><a class="link link-secondary" href="#"><%= dept.name %></a></li>
+          <li><a href="<%= dept.url %>"><%= dept.name %></a></li>
       <% }) %>
     </ul>
   </nav>
-  <main class="min-h-screen bg-primary">
-
+  <main class="min-h-screen bg-primary w-full max-w-none prose p-4 prose-h2:text-base">
+    <h1 class="text-primary-content">Inventory Manager Home</h1>
+    <h2 class="text-primary-content">Welcome to Inventory Manager for SuperGroceries</h2>
   </main>
 </body>
 </html>
