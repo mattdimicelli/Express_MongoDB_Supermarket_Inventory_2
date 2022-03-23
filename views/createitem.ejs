@@ -1,0 +1,41 @@
+<%- include('partials/_top') %>
+<title>Inventory Manager - Create Item</title>
+<%- include('partials/_middle1') %>
+<main class="min-h-screen bg-base-100 w-full p-4">
+    <div class="prose pb-4">
+        <h1>Create Item</h1>
+    </div>
+    <form action="/inventory/item/create" method="post" class="form-control">
+        <label class="label" for="name">Name:</label>
+        <input class="input" type="text" id="name" name="name" required /> 
+
+        <label class="label" for="dept">Dept:</label>
+        <select class="select" name="dept" required>
+            <option value="none" selected disabled hidden>Select a Department</option>
+            <% depts.map(dept => { %>
+                <option value="<%= dept.name %>"><%= dept.name %></option>
+            <% }); %>
+        </select>
+
+        <label class="label" for="brand">Brand:</label>
+        <input class="input" type="text" id="brand" name="brand" /> 
+
+        <label class="label" for="details">Details:</label>
+        <textarea class="textarea" name="details" id="details"></textarea>
+
+        <label class="label" for="priceperunit">$/unit:</label>
+        <input class="input" type="number" id="priceperunit" name="priceperunit" min="0" />
+
+        <label class="label" for="priceperpound">$/lb:</label>
+        <input class="input" type="number" id="priceperpound" name="priceperpound" min="0" /> 
+
+        <label class="label" for="units">Units</label>
+        <input class="input" type="number" id="units" name="units" min="0" />
+
+        <label class="label" for="poundsstocked">lbs stocked</label>
+        <input class="input" type="number" id="poundsstocked" name="poundsstocked" min="0" />
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</main>
+<%- include('partials/_bottom') %>

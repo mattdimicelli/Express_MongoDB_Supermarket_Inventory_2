@@ -29,8 +29,10 @@ exports.itemUpdateGet = (req, res) => {
 }
 
 // Handle item create form on GET
-exports.itemCreateGet = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.itemCreateGet = async(req, res) => {
+    console.log('boom')
+    const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
+    res.render('createitem', {depts});
 }
 
 
