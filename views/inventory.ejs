@@ -1,29 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="corporate">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-  <title>Inventory Manager</title>
-</head>
-<body class="flex">
-  <nav class="min-h-screen bg-secondary w-1/5">
-    <ul class="menu menu-compact text-secondary-content">
-      <li><a class="uppercase" href="#">All items</a></li>
-      <li><a class="uppercase" href="#">All departments</a></li>
-      <li><a class="uppercase" href="#">Create new department</a></li>
-      <li><a class="uppercase" href="#">Create new item</a></li>
-      <li></li>
-      <li class="pl-2">Sort by...</li>
-      <% depts.map(dept => { %>
-          <li><a href="<%= dept.url %>"><%= dept.name %></a></li>
-      <% }) %>
-    </ul>
-  </nav>
-  <main class="min-h-screen bg-primary w-full max-w-none prose p-4 prose-h2:text-base">
-    <h1 class="text-primary-content">Inventory Manager Home</h1>
-    <h2 class="text-primary-content">Welcome to Inventory Manager for SuperGroceries</h2>
+<%- include('partials/_top') %>
+<title>Inventory Manager - <%= title %></title>
+<%- include('partials/_middle1') %>
+  <main class="min-h-screen bg-base-100 w-full max-w-none prose p-4 prose-h2:text-base">
+    <h1 class="text-base-content">Inventory Manager Home</h1>
+    <h2 class="text-base-content">Welcome to Inventory Manager for SuperGroceries</h2>
   </main>
-</body>
-</html>
+<%- include('partials/_bottom') %>
+

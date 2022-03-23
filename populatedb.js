@@ -29,25 +29,6 @@ db.on('error', console.error.bind(console, 'MongoDB Connection Error: '));
 let items = [];
 let departments = [];
 
-const [produce, meatAndSeafood, beerAndWine, healthAndBeauty, deliPreparedFoods, frontEnd,
-  floral, cafe, bakery, frozen, dairy, beverages, cannedGoods, bakingGoods, cleaning,
-  paperGoods] = departments;
-
-const itemData = [
-  {name: 'apple, gala', department: produce, pricePerPound: 0.83, },
-  {name: 'grapes', department: produce, pricePerPound: 1.28 },
-  {name: "Reynolds Wrap, HEAVY DUTY", department: paperGoods, 
-      details: '50 sq ft', pricePerUnit: 3.97, brand: 'Reynolds'},
-  {name: 'Talenti Gelato, chocolate peanut butter cup', department: frozen, 
-      pricePerUnit: 4.98, brand: 'Talenti',},
-  {name: "Crunchy Breaded Fish Sticks", department: frozen, pricePerUnit: 6.48, brand: "Gorton's" },
-  {name: 'Lactaid 1% Calcium Fortified', department: dairy, pricePerUnit: 3.89, brand: 'Lactaid' },
-  {name: 'mussels', department: meatAndSeafood, details: 'wild caught', 
-      pricePerPound: 4.99, stockPounds: 17 },
-  {name: 'Colgate Total Advanced Whitening Toothpaste', stockUnits: 10,
-      department: healthAndBeauty, details: '6.4oz', pricePerUnit: 3.98, brand: 'Colgate'},
-];
-
 const departmentData = [
   { name: 'Produce', supervisor: 'Tomas Hassan', extension: 101},
   { name: 'Meat and Seafood', supervisor: 'George Foreman', extension: 102},
@@ -71,9 +52,30 @@ const departmentData = [
 (async function populateDb() {
   let depResults;
   let itemResults;
+  let itemData;
   try {
     depResults = await createDepartments();
-    itemResults = await createItems();
+
+    let [produce, meatAndSeafood, beerAndWine, healthAndBeauty, deliPreparedFoods, frontEnd,
+      floral, cafe, bakery, frozen, dairy, beverages, cannedGoods, bakingGoods, cleaning,
+      paperGoods] = departments;
+    
+    itemData = [
+      {name: 'apple, gala', department: produce, pricePerPound: 0.83, },
+      {name: 'grapes', department: produce, pricePerPound: 1.28 },
+      {name: "Reynolds Wrap, HEAVY DUTY", department: paperGoods, 
+          details: '50 sq ft', pricePerUnit: 3.97, brand: 'Reynolds'},
+      {name: 'Talenti Gelato, chocolate peanut butter cup', department: frozen, 
+          pricePerUnit: 4.98, brand: 'Talenti',},
+      {name: "Crunchy Breaded Fish Sticks", department: frozen, pricePerUnit: 6.48, brand: "Gorton's" },
+      {name: 'Lactaid 1% Calcium Fortified', department: dairy, pricePerUnit: 3.89, brand: 'Lactaid' },
+      {name: 'mussels', department: meatAndSeafood, details: 'wild caught', 
+          pricePerPound: 4.99, stockPounds: 17 },
+      {name: 'Colgate Total Advanced Whitening Toothpaste', stockUnits: 10,
+          department: healthAndBeauty, details: '6.4oz', pricePerUnit: 3.98, brand: 'Colgate'},
+    ];
+
+    itemResults = await createItems(itemData);
   }
   catch(err) {
     console.error(chalk.red(`ERROR: ${err}`));
@@ -114,7 +116,7 @@ async function departmentCreate({name, supervisor, extension}) {
   return savedDepartment;
 }
 
-function createItems() {
+function createItems(itemData) {
   return Promise.allSettled(itemData.map(item => itemCreate(item)));
 }
 

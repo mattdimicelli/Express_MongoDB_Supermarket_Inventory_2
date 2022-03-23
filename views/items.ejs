@@ -1,0 +1,36 @@
+<%- include('partials/_top') %>
+<title>Inventory Manager - <%= title %></title>
+<%- include('partials/_middle1') %>
+<main class="min-h-screen bg-base-100 w-full p-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Dept</th>
+                <th>Brand</th>
+                <th>Details</th>
+                <th>$/u</th>
+                <th>$/lb</th>
+                <th>units</th>
+                <th>lbs Stocked</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% items.map(item => { 
+                const {name, department, details, pricePerUnit, pricePerPound, brand, 
+                    stockUnits, stockPounds } = item; %>
+            <tr>
+                <td><%= name %></td>
+                <td><%= department.name %></td>
+                <td><%= brand %></td>
+                <td><%= details %></td>
+                <td><%= pricePerUnit %></td>
+                <td><%= pricePerPound %></td>
+                <td><%= stockUnits %></td>
+                <td><%= stockPounds %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</main>
+<%- include('partials/_bottom') %>

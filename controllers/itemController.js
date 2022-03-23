@@ -4,12 +4,15 @@ const Department = require('../models/Department.js');
 // Display home page for inventory
 exports.homeGet = async (req, res) => {
     const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
-    res.render('inventory', { depts: depts });
+    res.render('inventory', { depts, title: 'Home' });
 }
 
 // Display list of all items in the supermarket
-exports.itemsGet = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.itemsGet = async(req, res) => {
+    const items = await Item.find({}).sort({'name': 'asc'}).populate('department').exec();
+    const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
+    console.log(items);
+    res.render('items', {depts, items, title: 'All Items'});
 }
 
 // Display details for an individual item
