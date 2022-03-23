@@ -1,8 +1,10 @@
 const Item = require('../models/Item.js');
+const Department = require('../models/Department.js');
 
 // Display home page for inventory
-exports.homeGet = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.homeGet = async (req, res) => {
+    const depts = await Department.find({}, 'name').sort({ 'name': 'asc' }).exec();
+    res.render('inventory', { depts: depts });
 }
 
 // Display list of all items in the supermarket

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="corporate">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>Inventory Manager</title>
+</head>
+<body class="flex">
+  <nav class="min-h-screen bg-secondary w-1/5">
+    <ul class="menu text-secondary-content">
+      <li><a class="link link-secondary" href="#">All items</a></li>
+      <li><a class="link link-secondary" href="#">All departments</a></li>
+      <li><a class="link link-secondary" href="#">Create new department</a></li>
+      <li><a class="link link-secondary" href="#">Create new item</a></li>
+      <% depts.map(dept => { %>
+          <li><a class="link link-secondary" href="#"><%= dept.name %></a></li>
+      <% }) %>
+    </ul>
+  </nav>
+  <main class="min-h-screen bg-primary">
+
+  </main>
+</body>
+</html>

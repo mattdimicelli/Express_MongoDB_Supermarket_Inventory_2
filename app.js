@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan'); // HTTP logger
-var debug = require('debug')('grocery-2:app');
+var debug = require('debug')('app');
 const mongoose = require('mongoose');
 const inventoryRouter = require('./routes/inventory.js');
 
@@ -41,7 +41,7 @@ app.use(function(err, req, res) {
 });
 
 mongoose.connect(
-  'mongodb+srv://supermarket_2_mrd2689a:Kffm2YrahJ5%26Zh@supermarket-2.znxwh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  'mongodb+srv://supermarket_2_mrd2689a:Kffm2YrahJ5%26Zh@supermarket-2.znxwh.mongodb.net/supermarket-2?retryWrites=true&w=majority',
     { useNewUrlParser: true}
 );
 
