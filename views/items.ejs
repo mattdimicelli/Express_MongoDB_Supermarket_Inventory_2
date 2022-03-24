@@ -19,10 +19,10 @@
         <tbody>
             <% items.map(item => { 
                 const {name, department, details = '--', pricePerUnit = '--', pricePerPound = '--', 
-                brand = '--', stockUnits = '--', stockPounds = '--' } = item; %>
+                brand = '--', stockUnits = '--', stockPounds = '--', url } = item; %>
             <tr>
-                <td><%= name  %></td>
-                <td><%= department.name %></td>
+                <td><a class="link link-hover" href="<%= url %>"><%= name  %></a></td>
+                <td><a class="link link-hover" href="<%= department.url %>"><%= department.name %></a></td>
                 <td><%= brand %></td>
                 <td><%= details %></td>
                 <td><%= pricePerUnit %></td>

@@ -14,38 +14,51 @@ exports.departmentGet = async (req, res) => {
     const depts = await Department.find({}).sort({ 'name': 'asc' }).exec();
     const id = mongoose.Types.ObjectId(req.params.id);
     const dept = await Department.findById(id).exec();
-    console.log(dept._id);
     const items = await Item.find({department: id}).sort({ 'name': 'asc' }).exec();
-    console.log(items);
     res.render('department', { depts, dept, title: `Department: ${dept.name}`, items });
 }
 
 // Handle department update form on GET
-exports.departmentUpdateGet = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.departmentUpdateGet = async (req, res) => {
+    const id = mongoose.Types.ObjectId(req.params.id);
+    const dept = await Department.findById(id).exec();
+    const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
+    res.render('update-dept', {depts, title: `Update Department: ${dept.name}`, dept});
 }
 
 // Handle department create form on GET
-exports.departmentCreateGet = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.departmentCreateGet = async (req, res) => {
+    const id = mongoose.Types.ObjectId(req.params.id);
+    const dept = await Department.findById(id).exec();
+    const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
+    res.render('create-dept', {depts, title: 'Create Department', dept});
 }
 
 // Handle department delete page on GET
-exports.departmentDeleteGet = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.departmentDeleteGet = async (req, res) => {
+    const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
+    const id = mongoose.Types.ObjectId(req.params.id);
+    const dept = await Department.findById(id).exec();
+    res.render('delete-item', {depts, title: `Delete Department: ${dept.name}`, dept});
 }
 
 // Handle department update form on POST
-exports.departmentUpdatePost = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.departmentUpdatePost = async (req, res) => {
+    const id = mongoose.Types.ObjectId(req.params.id);
+    const {name, supervisor, extension} = req.body;
+    await Department.findByIdAndUpdate(id, {name, supervisor, extension}).exec();
+    res.redirect(`/departments/${req.params.id}`);
 }
 
 // Handle department create form on POST
-exports.departmentCreatePost = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.departmentCreatePost = async (req, res) => {
+    const {name, supervisor, extension} = req.body;
+    const dept = new Department({ name, supervisor, extension });
+    const savedDept = await dept.save();
+    res.redirect(savedDept.url);
 }
 
-// Handle department delete page on DELETE
+// Handle department delete page on POST
 exports.departmentDeletePost = (req, res) => {
     res.send('NOT YET IMPLEMENTED');
 }

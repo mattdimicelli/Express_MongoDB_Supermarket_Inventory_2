@@ -48,7 +48,7 @@ let itemSchema = new Schema({
 });
 
 itemSchema.virtual('url').get(function() {
-    return '/inventory/item' + this._id;
+    return '/inventory/item/' + this._id;
 });
 
 module.exports = model('Item', itemSchema);

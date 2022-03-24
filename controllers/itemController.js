@@ -43,7 +43,7 @@ exports.itemDeleteGet = async (req, res) => {
     const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
     const id = mongoose.Types.ObjectId(req.params.id);
     const item = await Item.findById(id).exec();
-    res.render('delete-item', {depts, title: `Delete Item: ${item.name}`});
+    res.render('delete-item', {depts, title: `Delete Item: ${item.name}`, item});
 }
 
 // Handle item update form on POST

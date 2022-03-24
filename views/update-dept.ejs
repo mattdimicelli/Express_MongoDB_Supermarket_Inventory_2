@@ -1,0 +1,22 @@
+<%- include('partials/_top') %>
+<main class="min-h-screen bg-base-100 w-full py-6 px-10">
+    <div class="prose pb-4">
+        <h1><%= title %></h1>
+    </div>
+    <form action="" method="post" class="form-control">
+        <label class="label" for="name">Name:</label>
+        <input class="input input-bordered input-sm" type="text" id="name" name="name" required
+            value="<%= dept.name %>" /> 
+
+        <label class="label" for="supervisor">Supervisor:</label>
+        <input class="input input-bordered input-sm" type="text" id="supervisor" name="supervisor" 
+            value="<%= dept.supervisor %>" required> 
+
+        <label class="label" for="extension">Extension:</label>
+        <input class="input input-bordered input-sm mb-4" type="number" name="extension" id="extension" 
+            min="0" step="1" value="<%= dept.extension %>" required>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</main>
+<%- include('partials/_bottom') %>
