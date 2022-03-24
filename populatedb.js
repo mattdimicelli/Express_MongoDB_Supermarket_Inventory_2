@@ -56,6 +56,15 @@ const departmentData = [
   try {
     depResults = await createDepartments();
 
+    depResults.forEach(result => {
+      if (result.status === 'rejected') {
+        console.error(chalk.red(result.reason));
+      } 
+      else {
+        departments.push(result.value);
+      }
+    });
+
     let [produce, meatAndSeafood, beerAndWine, healthAndBeauty, deliPreparedFoods, frontEnd,
       floral, cafe, bakery, frozen, dairy, beverages, cannedGoods, bakingGoods, cleaning,
       paperGoods] = departments;
@@ -80,12 +89,16 @@ const departmentData = [
   catch(err) {
     console.error(chalk.red(`ERROR: ${err}`));
   }
-  depResults.forEach(result => {
-    if (result.status === 'rejected') console.error(chalk.red(result.reason));
-  });
+
   itemResults.forEach(result => {
-    if (result.status === 'rejected') console.error(chalk.red(result.reason));
+    if (result.status === 'rejected') {
+      console.error(chalk.red(result.reason));
+    } 
+    else {
+      items.push(result.value);
+    }
   });
+
   console.log(chalk.green('No. of departments successfuly saved to MongoDB: ' + departments.length 
   + '/' + departmentData.length));
   console.log(chalk.green('No. of items successfully saved to MongoDB: ' + items.length + '/'  +
@@ -105,14 +118,12 @@ async function itemCreate({name, department, details = null, pricePerUnit = null
 
   const item = new Item(itemInfo);
   const savedItem = await item.save();
-  items.push(savedItem);
   return savedItem;
 }
 
 async function departmentCreate({name, supervisor, extension}) {
   const department = new Department({ name, supervisor, extension });
   const savedDepartment = await department.save();
-  departments.push(savedDepartment);
   return savedDepartment;
 }
 

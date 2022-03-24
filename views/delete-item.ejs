@@ -1,0 +1,12 @@
+<%- include('partials/_top') %>
+<main class="min-h-screen bg-base-100 w-full py-6 px-10">
+    <div class="prose pb-4">
+        <h1>Delete Item: <%= item.name %></h1>
+        <h2>Do you really want to delete this item?</h2>
+    </div>
+    <form action="" method="post">
+        <input type="hidden" name="itemid" required value="<%= item._id %>">
+        <button type="submit" class="btn btn-warning">Delete</button>
+    </form>
+</main>
+<%- include('partials/_bottom') %>

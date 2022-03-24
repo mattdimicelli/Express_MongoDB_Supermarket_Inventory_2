@@ -5,3 +5,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>Inventory Manager - <%= title %></title>
+</head>
+<body class="flex">
+  <nav class="min-h-screen bg-secondary w-1/5">
+    <ul class="menu menu-compact text-secondary-content">
+      <li><a class="uppercase" href="/inventory/items">All items</a></li>
+      <li><a class="uppercase" href="/departments">All departments</a></li>
+      <li><a class="uppercase" href="/department/create">Create new department</a></li>
+      <li><a class="uppercase" href="/inventory/item/create">Create new item</a></li>
+      <li></li>
+      <li class="pl-2">Sort by...</li>
+      <% depts.map(dept => { %>
+          <li><a href="<%= dept.url %>"><%= dept.name %></a></li>
+      <% }) %>
+    </ul>
+  </nav>
+

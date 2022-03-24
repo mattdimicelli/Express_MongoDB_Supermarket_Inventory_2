@@ -1,12 +1,15 @@
 <%- include('partials/_top') %>
 <main class="min-h-screen bg-base-100 w-full py-6 px-10">
     <div class="prose pb-4 mb-4">
-        <h1><%= item.name %></h1>
+        <h1><%= title %></h1>
+        <h2>Supervisor: <%= dept.supervisor %></h2>
+        <h2>Extension: <%= dept.extension %></h2>
     </div>
     <table class="table table-zebra table-compact mb-4">
+        <caption>Items:</caption>
         <thead>
             <tr>
-                <th>Dept</th>
+                <th>Name</th>
                 <th>Brand</th>
                 <th>Details</th>
                 <th>$/u</th>
@@ -16,10 +19,11 @@
             </tr>
         </thead>
         <tbody>
-            <% const { department, details = '--', pricePerUnit = '--', pricePerPound = '--', 
+            <% items.map(item => { 
+                const {name, details = '--', pricePerUnit = '--', pricePerPound = '--', 
                 brand = '--', stockUnits = '--', stockPounds = '--' } = item; %>
             <tr>
-                <td><%= department.name %></td>
+                <td><%= name  %></td>
                 <td><%= brand %></td>
                 <td><%= details %></td>
                 <td><%= pricePerUnit %></td>
@@ -27,11 +31,12 @@
                 <td><%= stockUnits %></td>
                 <td><%= stockPounds %></td>
             </tr>
+            <% }) %>
         </tbody>
     </table>
     <div class="btn-group">
-        <button class="btn btn-primary ">Delete Item</button>
-        <button class="btn btn-secondary ">Update Item</button>
+        <button class="btn btn-primary ">Delete Department</button>
+        <button class="btn btn-secondary ">Update Department</button>
     </div>
 </main>
 <%- include('partials/_bottom') %>

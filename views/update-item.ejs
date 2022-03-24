@@ -5,37 +5,40 @@
     </div>
     <form action="/inventory/item/create" method="post" class="form-control">
         <label class="label" for="name">Name:</label>
-        <input class="input input-bordered input-sm" type="text" id="name" name="name" required /> 
+        <input class="input input-bordered input-sm" type="text" id="name" name="name" required
+            value="<%= item.name %>" /> 
 
         <label class="label" for="dept">Dept:</label>
         <select class="select select-bordered select-sm" name="dept" required>
-            <option value="" selected>Select a Department</option>
+            <option value="">Select a Department</option>
             <% depts.map(dept => { %>
-                <option value="<%= dept.name %>"><%= dept.name %></option>
+                <option <%= item.department.name === dept.name ? 'selected' : '' %>
+                        value="<%= dept.name %>"><%= dept.name %></option>
             <% }); %>
         </select>
 
         <label class="label" for="brand">Brand:</label>
-        <input class="input input-bordered input-sm" type="text" id="brand" name="brand" /> 
+        <input class="input input-bordered input-sm" type="text" id="brand" name="brand" 
+            value="<%= item.brand %>"> 
 
         <label class="label" for="details">Details:</label>
-        <textarea class="textarea textarea-bordered" rows="1" name="details" id="details"></textarea>
+        <textarea class="textarea textarea-bordered" rows="1" name="details" id="details"><%= item.details %></textarea>
 
         <label class="label" for="priceperunit">$/unit:</label>
         <input class="input input-bordered input-sm" type="number" id="priceperunit" 
-            name="priceperunit" min="0" step="0.01" />
+            name="priceperunit" min="0" step="0.01" value="<%= item.pricePerUnit %>" />
 
         <label class="label" for="priceperpound">$/lb:</label>
         <input class="input input-bordered input-sm" type="number" id="priceperpound" 
-            name="priceperpound" min="0" step="0.01" /> 
+            name="priceperpound" min="0" step="0.01" value="<%= item.pricePerPound %>" /> 
 
         <label class="label" for="units">Units</label>
         <input class="input input-bordered input-sm" type="number" id="units" name="units" min="0"
-            step="1" >
+            step="1" value="<%= item.stockUnits %>" >
 
         <label class="label" for="poundsstocked">lbs stocked</label>
         <input class="input input-bordered input-sm mb-4" type="number" id="poundsstocked" 
-            name="poundsstocked" min="0" step="0.01" />
+            name="poundsstocked" min="0" step="0.01" value="<%= item.stockPounds %>" />
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

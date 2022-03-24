@@ -1,13 +1,23 @@
-const Department = require('..models/Department.js');
+const Department = require('../models/Department.js');
+const Item = require('../models/Item.js');
+const mongoose = require('mongoose');
+
 
 // Display list of all departments in the supermarket
-exports.allDepartments = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.departmentsGet = async (req, res) => {
+    const depts = await Department.find({}).sort({ 'name': 'asc' }).exec();
+    res.render('departments', { depts, title: 'All Departments' });
 }
 
 // Display details for an individual department
-exports.department = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.departmentGet = async (req, res) => {
+    const depts = await Department.find({}).sort({ 'name': 'asc' }).exec();
+    const id = mongoose.Types.ObjectId(req.params.id);
+    const dept = await Department.findById(id).exec();
+    console.log(dept._id);
+    const items = await Item.find({department: id}).sort({ 'name': 'asc' }).exec();
+    console.log(items);
+    res.render('department', { depts, dept, title: `Department: ${dept.name}`, items });
 }
 
 // Handle department update form on GET

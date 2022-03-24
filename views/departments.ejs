@@ -1,0 +1,25 @@
+<%- include('partials/_top') %>
+<main class="min-h-screen bg-base-100 w-full py-6 px-10">
+    <div class="prose pb-4">
+        <h1>All Departments</h1>
+    </div>
+    <table class="table table-zebra table-compact">
+        <thead>
+            <tr>
+                <th>Department</th>
+                <th>Supervisor</th>
+                <th>Extension</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% depts.map(({name, supervisor, extension, url}) => { %>
+            <tr>
+                <td><a class="link link-neutral link-hover" href="<%= url %>"><%= name %></a></td>
+                <td><%= supervisor %></td>
+                <td><%= extension %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</main>
+<%- include('partials/_bottom') %>

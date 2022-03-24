@@ -24,21 +24,26 @@ exports.itemGet = async(req, res) => {
 }
 
 // Handle item update form on GET
-exports.itemUpdateGet = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.itemUpdateGet = async (req, res) => {
+    const id = mongoose.Types.ObjectId(req.params.id);
+    const item = await Item.findById(id).populate('department').exec();
+    const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
+    res.render('update-item', {depts, title: `Update ${item.name}`, item});
 }
 
 // Handle item create form on GET
 exports.itemCreateGet = async(req, res) => {
-    console.log('boom')
     const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
-    res.render('create-item', {depts});
+    res.render('create-item', {depts, title: 'Create Item'});
 }
 
 
 // Handle item delete page on GET
-exports.itemDeleteGet = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.itemDeleteGet = async (req, res) => {
+    const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
+    const id = mongoose.Types.ObjectId(req.params.id);
+    const item = await Item.findById(id).exec();
+    res.render('delete-item', {depts, title: `Delete Item: ${item.name}`});
 }
 
 // Handle item update form on POST
@@ -51,7 +56,7 @@ exports.itemCreatePost = (req, res) => {
     res.send('NOT YET IMPLEMENTED');
 }
 
-// Handle item delete page on DELETE
+// Handle item delete page on POST
 exports.itemDeletePost = (req, res) => {
     res.send('NOT YET IMPLEMENTED');
 }
