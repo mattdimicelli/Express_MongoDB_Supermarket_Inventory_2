@@ -32,7 +32,7 @@ exports.itemUpdateGet = (req, res) => {
 exports.itemCreateGet = async(req, res) => {
     console.log('boom')
     const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
-    res.render('createitem', {depts});
+    res.render('create-item', {depts});
 }
 
 

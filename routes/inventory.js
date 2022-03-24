@@ -11,11 +11,11 @@ router.get('/', homeGet);
 // GET req to READ a list of all items
 router.get('/items', itemsGet);
 
-// GET req to READ a specific item
-router.get('/item/:id', itemGet);
-
 // GET req to CREATE an item
 router.get('/item/create', itemCreateGet);
+
+// GET req to READ a specific item
+router.get('/item/:id', itemGet);
 
 // POST req to CREATE an item
 router.post('/item/create', itemCreatePost);
