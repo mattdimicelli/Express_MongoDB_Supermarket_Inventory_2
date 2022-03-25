@@ -2,7 +2,7 @@
   "name": "grocery-2",
   "version": "0.0.0",
   "engines": {
-    "node": "16.13.2"
+    "node": "17.4.0"
   },
   "private": true,
   "scripts": {
