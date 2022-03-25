@@ -24,7 +24,7 @@ router.get('/item/:id', itemGet);
 router.get('/item/:id/delete', itemDeleteGet);
 
 // POST req to DELETE an item
-router.delete('/item/:id/delete', itemDeletePost);
+router.post('/item/:id/delete', itemDeletePost);
 
 // GET req to UPDATE an item
 router.get('/item/:id/update', itemUpdateGet);
