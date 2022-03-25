@@ -47,13 +47,19 @@ exports.itemDeleteGet = async (req, res) => {
 }
 
 // Handle item update form on POST
-exports.itemUpdatePost = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.itemUpdatePost = async (req, res) => {
+    const id = mongoose.Types.ObjectId(req.params.id);
+    const dept = await Department.findOne({name: req.body.dept});
+    const updateDetails = {...req.body, department: dept};
+    await Item.findByIdAndUpdate(id, updateDetails).exec();
+    res.redirect(`/inventory/item/${req.params.id}`);
 }
 
 // Handle item create form on POST
-exports.itemCreatePost = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.itemCreatePost = async (req, res) => {
+    const item = new Item({ ...req.body, name:null });
+    const savedItem = await item.save();
+    res.redirect(savedItem.url);
 }
 
 // Handle item delete page on POST

@@ -35,8 +35,12 @@
         </tbody>
     </table>
     <div class="btn-group">
-        <button class="btn btn-primary ">Delete Department</button>
-        <button class="btn btn-secondary ">Update Department</button>
+        <a href="/departments/<%= dept.id %>/delete">
+            <button class="btn btn-primary">Delete Department</button>
+        </a>
+        <a href="/departments/<%= dept.id %>/update">
+            <button class="btn btn-secondary">Update Department</button>
+        </a>
     </div>
 </main>
 <%- include('partials/_bottom') %>

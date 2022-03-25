@@ -39,7 +39,8 @@ exports.departmentDeleteGet = async (req, res) => {
     const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
     const id = mongoose.Types.ObjectId(req.params.id);
     const dept = await Department.findById(id).exec();
-    res.render('delete-item', {depts, title: `Delete Department: ${dept.name}`, dept});
+    const items = await Item.find({department: id}).sort({ 'name': 'asc' }).exec();
+    res.render('delete-dept', {depts, title: `Delete Department: ${dept.name}`, dept, items});
 }
 
 // Handle department update form on POST
@@ -59,7 +60,9 @@ exports.departmentCreatePost = async (req, res) => {
 }
 
 // Handle department delete page on POST
-exports.departmentDeletePost = (req, res) => {
-    res.send('NOT YET IMPLEMENTED');
+exports.departmentDeletePost = async (req, res) => {
+    const id = mongoose.Types.ObjectId(req.params.id);
+    await Department.findByIdAndDelete(id);
+    res.redirect('/departments');
 }
 
