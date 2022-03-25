@@ -7,6 +7,8 @@ var debug = require('debug')('app');
 const mongoose = require('mongoose');
 const inventoryRouter = require('./routes/inventory.js');
 const departmentRouter = require('./routes/departments.js');
+const compression = require('compression');
+const helmet = require('helmet');
 
 
 var indexRouter = require('./routes/index');
@@ -16,6 +18,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(helmet());
+app.use(compression());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,10 +46,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-mongoose.connect(
-  'mongodb+srv://supermarket_2_mrd2689a:Kffm2YrahJ5%26Zh@supermarket-2.znxwh.mongodb.net/supermarket-2?retryWrites=true&w=majority',
-    { useNewUrlParser: true}
-);
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true});
 
 const db = mongoose.connection;
 db.on('error', (err) => debug(`Connection error: ${err}`));

@@ -1,6 +1,9 @@
 {
   "name": "grocery-2",
   "version": "0.0.0",
+  "engines": {
+    "node": "16.13.2"
+  },
   "private": true,
   "scripts": {
     "start": "DEBUG=server,app,app:* nodemon ./bin/www",
@@ -9,11 +12,13 @@
   },
   "dependencies": {
     "chalk": "4.x",
+    "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
     "daisyui": "^2.11.0",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "helmet": "^5.0.2",
     "http-errors": "~1.6.3",
     "mongoose": "^6.2.7",
     "morgan": "~1.9.1"
@@ -27,7 +32,8 @@
     "delay": 2500,
     "restartable": "rs",
     "env": {
-      "PORT": 4000
+      "PORT": 4000,
+      "MONGODB_URI": "mongodb+srv://supermarket_2_mrd2689a:Kffm2YrahJ5%26Zh@supermarket-2.znxwh.mongodb.net/supermarket-2?retryWrites=true&w=majority"
     }
   }
 }

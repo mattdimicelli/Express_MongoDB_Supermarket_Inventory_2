@@ -17,7 +17,6 @@ exports.homeGet = async (req, res, next) => {
 exports.itemsGet = async(req, res, next) => {
     try {
         const items = await Item.find({}).sort({'name': 'asc'}).populate('department').exec();
-        console.log(items);
         const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
         res.render('items', {depts, items, title: 'All Items'});
     }
