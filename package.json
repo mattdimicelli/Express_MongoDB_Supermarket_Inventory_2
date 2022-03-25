@@ -6,7 +6,7 @@
   },
   "private": true,
   "scripts": {
-    "start": "DEBUG=server,app,app:* nodemon ./bin/www",
+    "start": "DEBUG=server,app,app:* node ./bin/www",
     "build:css": "tailwindcss -i ./tailwind.css -o ./public/stylesheets/style.css",
     "debug": "DEBUG=* nodemon ./bin/www"
   },
