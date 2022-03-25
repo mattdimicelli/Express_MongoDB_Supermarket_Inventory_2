@@ -17,10 +17,17 @@
                 </tr>
             </thead>
             <tbody>
-                <% const { department, details = '--', pricePerUnit = '--', pricePerPound = '--', 
-                    brand = '--', stockUnits = '--', stockPounds = '--' } = item; %>
+                <% let { department, details = '--', pricePerUnit = '--', pricePerPound = '--', 
+                    brand = '--', stockUnits = '--', stockPounds = '--' } = item;
+
+                    if (brand === '') brand = '--';
+                    if (details === '') details = '--'; %>
                 <tr>
-                    <td><%= department.name %></td>
+                    <td>
+                        <a class="link link-hover" href="<%= department.url %>">
+                            <%= department.name %>
+                        </a>
+                    </td>
                     <td><%= brand %></td>
                     <td><%= details %></td>
                     <td><%= pricePerUnit %></td>

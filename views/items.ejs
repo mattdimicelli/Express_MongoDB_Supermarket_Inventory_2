@@ -3,35 +3,37 @@
     <div class="prose pb-4">
         <h1 class="uppercase">All Items</h1>
     </div>
-    <table class="table table-zebra table-compact">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Dept</th>
-                <th>Brand</th>
-                <th>Details</th>
-                <th>$/u</th>
-                <th>$/lb</th>
-                <th>units</th>
-                <th>lbs Stocked</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% items.map(item => { 
-                const {name, department, details = '--', pricePerUnit = '--', pricePerPound = '--', 
-                brand = '--', stockUnits = '--', stockPounds = '--', url } = item; %>
-            <tr>
-                <td><a class="link link-hover" href="<%= url %>"><%= name  %></a></td>
-                <td><a class="link link-hover" href="<%= department.url %>"><%= department.name %></a></td>
-                <td><%= brand %></td>
-                <td><%= details %></td>
-                <td><%= pricePerUnit %></td>
-                <td><%= pricePerPound %></td>
-                <td><%= stockUnits %></td>
-                <td><%= stockPounds %></td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
+    <div class="overflow-x-auto mb-4">
+        <table class="table table-zebra table-compact max-w-full">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Dept</th>
+                    <th>Brand</th>
+                    <th>Details</th>
+                    <th>$/u</th>
+                    <th>$/lb</th>
+                    <th>units</th>
+                    <th>lbs Stocked</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% items.map(item => { 
+                    const {name, department, details = '--', pricePerUnit = '--', pricePerPound = '--', 
+                    brand = '--', stockUnits = '--', stockPounds = '--', url } = item; %>
+                <tr>
+                    <td><a class="link link-hover" href="<%= url %>"><%= name  %></a></td>
+                    <td><a class="link link-hover" href="<%= department.url %>"><%= department.name %></a></td>
+                    <td><%= brand %></td>
+                    <td><%= details %></td>
+                    <td><%= pricePerUnit %></td>
+                    <td><%= pricePerPound %></td>
+                    <td><%= stockUnits %></td>
+                    <td><%= stockPounds %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
 </main>
 <%- include('partials/_bottom') %>

@@ -1,5 +1,5 @@
 <%- include('partials/_top') %>
-<main class="min-h-screen bg-base-100 w-full py-6 px-10">
+<main class="min-h-screen bg-base-100 w-full py-6 px-10 uppercase">
     <div class="prose pb-4">
         <h1>Create Item</h1>
     </div>
@@ -22,7 +22,8 @@
             value="<%= item.brand %>"> 
 
         <label class="label" for="details">Details:</label>
-        <textarea class="textarea textarea-bordered" rows="1" name="details" id="details"><%= item.details %></textarea>
+        <textarea class="textarea textarea-bordered" rows="1" name="details" id="details"
+        maxlength="100" ><%= item.details %></textarea>
 
         <label class="label" for="priceperunit">$/unit:</label>
         <input class="input input-bordered input-sm" type="number" id="priceperunit" 

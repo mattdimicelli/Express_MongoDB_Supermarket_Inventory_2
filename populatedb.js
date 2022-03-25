@@ -70,18 +70,24 @@ const departmentData = [
       paperGoods] = departments;
     
     itemData = [
-      {name: 'apple, gala', department: produce, pricePerPound: 0.83, },
-      {name: 'grapes', department: produce, pricePerPound: 1.28 },
+      {name: 'Gala apple', department: produce, pricePerPound: 0.83, stockPounds: 55 },
+      {name: 'grapes', department: produce, pricePerPound: 1.28, stockPounds: 30},
       {name: "Reynolds Wrap, HEAVY DUTY", department: paperGoods, 
-          details: '50 sq ft', pricePerUnit: 3.97, brand: 'Reynolds'},
+          details: '50 sq ft', pricePerUnit: 3.97, brand: 'Reynolds', stockUnits: 40},
       {name: 'Talenti Gelato, chocolate peanut butter cup', department: frozen, 
-          pricePerUnit: 4.98, brand: 'Talenti',},
-      {name: "Crunchy Breaded Fish Sticks", department: frozen, pricePerUnit: 6.48, brand: "Gorton's" },
-      {name: 'Lactaid 1% Calcium Fortified', department: dairy, pricePerUnit: 3.89, brand: 'Lactaid' },
+          pricePerUnit: 4.98, brand: 'Talenti', stockUnits: 25},
+      {name: "Crunchy Breaded Fish Sticks", department: frozen, pricePerUnit: 6.48, brand: "Gorton's",
+        stockUnits: 20 },
+      {name: 'Lactaid 1% Calcium Fortified', department: dairy, pricePerUnit: 3.89, brand: 'Lactaid', 
+      stockUnits: 30 },
       {name: 'mussels', department: meatAndSeafood, details: 'wild caught', 
           pricePerPound: 4.99, stockPounds: 17 },
       {name: 'Colgate Total Advanced Whitening Toothpaste', stockUnits: 10,
           department: healthAndBeauty, details: '6.4oz', pricePerUnit: 3.98, brand: 'Colgate'},
+      {name: 'Negra Modelo', department: beerAndWine, details: '12 pack, 355mL', stockUnits: 30,
+      pricePerUnit: 8.50},
+      {name: 'Boars Head Turkey', department: deliPreparedFoods, stockPounds: 15},
+      {name: 'Time Magazine', department: frontEnd, stockUnits: 50},
     ];
 
     itemResults = await createItems(itemData);

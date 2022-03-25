@@ -82,8 +82,10 @@ exports.itemUpdatePost = async (req, res, next) => {
     try {
         const id = mongoose.Types.ObjectId(req.params.id);
         const dept = await Department.findOne({name: req.body.dept});
-        const updateDetails = {...req.body, department: dept};
-        await Item.findByIdAndUpdate(id, updateDetails).exec();
+        let {priceperunit, priceperpound, units, poundsstocked} = req.body;
+        const updateDetails = {...req.body, department: dept, pricePerPound: priceperpound,
+            pricePerUnit: priceperunit, stockUnits: units, stockPounds: poundsstocked};
+        await Item.findByIdAndUpdate(id, updateDetails, {runValidators: true}).exec();
         res.redirect(`/inventory/item/${req.params.id}`);
     }
     catch(err) {
@@ -96,8 +98,9 @@ exports.itemCreatePost = async (req, res, next) => {
     try {
         const dept = req.body.dept;
         const deptObj = await Department.findOne({name: dept});
-        console.log(deptObj);
-        const item = new Item({...req.body, department: deptObj});
+        let {priceperunit, priceperpound, units, poundsstocked} = req.body;
+        const item = new Item({...req.body, department: deptObj, pricePerPound: priceperpound,
+            pricePerUnit: priceperunit, stockUnits: units, stockPounds: poundsstocked});
         const savedItem = await item.save();
         res.redirect(savedItem.url);
     }

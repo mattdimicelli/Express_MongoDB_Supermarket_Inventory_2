@@ -12,7 +12,7 @@ let itemSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        set: n => n.toUpperCase(),
+        uppercase: true,
         validate: noEmptyFieldValidator
     },
     department: {
@@ -23,20 +23,21 @@ let itemSchema = new Schema({
     details: {
         type: String,
         trim: true,
-        set: n => n.toUpperCase(),
+        uppercase: true,
+        maxLength: 100,
     },
     pricePerUnit: {
         type: Number,
-        match: [/^\d+(.\d{1,2})?$/, 'Must be in following format: 1.12, without dollar sign']
+        min: 0,
     }, 
     pricePerPound: {
         type: Number,
-        match: [/^\d+(.\d{1,2})?$/, 'Must be in following format: 1.12, without dollar sign']
+        min: 0,
     },
     brand: {
         type: String,
         trim: true, 
-        set: n => n.toUpperCase(),
+        uppercase: true,
     },
     stockUnits: {
         type: Number,

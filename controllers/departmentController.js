@@ -73,7 +73,9 @@ exports.departmentUpdatePost = async (req, res, next) => {
     try {
         const id = mongoose.Types.ObjectId(req.params.id);
         const {name, supervisor, extension} = req.body;
-        await Department.findByIdAndUpdate(id, {name, supervisor, extension}).exec();
+        await Department.findByIdAndUpdate(
+            id, {name, supervisor, extension}, {runValidators: true}
+            ).exec();
         res.redirect(`/departments/${req.params.id}`);
     } 
     catch(err) {

@@ -5,35 +5,39 @@
         <h2>Supervisor: <%= dept.supervisor %></h2>
         <h2>Extension: <%= dept.extension %></h2>
     </div>
-    <table class="table table-zebra table-compact mb-4">
-        <caption class="text-2xl font-bold">Items:</caption>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Details</th>
-                <th>$/u</th>
-                <th>$/lb</th>
-                <th>units</th>
-                <th>lbs Stocked</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% items.map(item => { 
-                const {name, details = '--', pricePerUnit = '--', pricePerPound = '--', 
-                brand = '--', stockUnits = '--', stockPounds = '--' } = item; %>
-            <tr>
-                <td><%= name  %></td>
-                <td><%= brand %></td>
-                <td><%= details %></td>
-                <td><%= pricePerUnit %></td>
-                <td><%= pricePerPound %></td>
-                <td><%= stockUnits %></td>
-                <td><%= stockPounds %></td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
+    <div class="overflow-x-auto mb-4">
+        <table class="table table-zebra table-compact mb-4 max-width-full">
+            <caption class="text-2xl font-bold">Items:</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Details</th>
+                    <th>$/u</th>
+                    <th>$/lb</th>
+                    <th>units</th>
+                    <th>lbs Stocked</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% items.map(item => { 
+                    const {name, details = '--', pricePerUnit = '--', pricePerPound = '--', 
+                    brand = '--', stockUnits = '--', stockPounds = '--', url } = item; %>
+                <tr>
+                    <td>
+                        <a class="link link-hover" href="<%= url %>"><%= name %></a>
+                    </td>
+                    <td><%= brand %></td>
+                    <td><%= details %></td>
+                    <td><%= pricePerUnit %></td>
+                    <td><%= pricePerPound %></td>
+                    <td><%= stockUnits %></td>
+                    <td><%= stockPounds %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
     <div class="btn-group">
         <a href="/departments/<%= dept.id %>/delete">
             <button class="btn btn-primary">Delete Department</button>
