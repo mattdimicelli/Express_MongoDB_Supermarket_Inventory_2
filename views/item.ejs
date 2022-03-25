@@ -3,32 +3,34 @@
     <div class="prose pb-4 mb-4">
         <h1><%= item.name %></h1>
     </div>
-    <table class="table table-zebra table-compact mb-4">
-        <thead>
-            <tr>
-                <th>Dept</th>
-                <th>Brand</th>
-                <th>Details</th>
-                <th>$/u</th>
-                <th>$/lb</th>
-                <th>units</th>
-                <th>lbs Stocked</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% const { department, details = '--', pricePerUnit = '--', pricePerPound = '--', 
-                brand = '--', stockUnits = '--', stockPounds = '--' } = item; %>
-            <tr>
-                <td><%= department.name %></td>
-                <td><%= brand %></td>
-                <td><%= details %></td>
-                <td><%= pricePerUnit %></td>
-                <td><%= pricePerPound %></td>
-                <td><%= stockUnits %></td>
-                <td><%= stockPounds %></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="overflow-x-auto mb-4">
+        <table class="table table-zebra table-compact max-w-full">
+            <thead>
+                <tr>
+                    <th>Dept</th>
+                    <th>Brand</th>
+                    <th>Details</th>
+                    <th>$/u</th>
+                    <th>$/lb</th>
+                    <th>units</th>
+                    <th>lbs Stocked</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% const { department, details = '--', pricePerUnit = '--', pricePerPound = '--', 
+                    brand = '--', stockUnits = '--', stockPounds = '--' } = item; %>
+                <tr>
+                    <td><%= department.name %></td>
+                    <td><%= brand %></td>
+                    <td><%= details %></td>
+                    <td><%= pricePerUnit %></td>
+                    <td><%= pricePerPound %></td>
+                    <td><%= stockUnits %></td>
+                    <td><%= stockPounds %></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="btn-group">
         <a href="/inventory/item/<%= item._id %>/delete">
             <button class="btn btn-primary">Delete Item</button>

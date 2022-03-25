@@ -17,6 +17,7 @@ exports.homeGet = async (req, res, next) => {
 exports.itemsGet = async(req, res, next) => {
     try {
         const items = await Item.find({}).sort({'name': 'asc'}).populate('department').exec();
+        console.log(items);
         const depts = await Department.find({}, 'name url').sort({ 'name': 'asc' }).exec();
         res.render('items', {depts, items, title: 'All Items'});
     }
@@ -93,7 +94,10 @@ exports.itemUpdatePost = async (req, res, next) => {
 // Handle item create form on POST
 exports.itemCreatePost = async (req, res, next) => {
     try {
-        const item = new Item({ ...req.body, name:null });
+        const dept = req.body.dept;
+        const deptObj = await Department.findOne({name: dept});
+        console.log(deptObj);
+        const item = new Item({...req.body, department: deptObj});
         const savedItem = await item.save();
         res.redirect(savedItem.url);
     }

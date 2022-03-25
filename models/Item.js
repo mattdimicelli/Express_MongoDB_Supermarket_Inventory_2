@@ -18,6 +18,7 @@ let itemSchema = new Schema({
     department: {
         type: Schema.Types.ObjectId,
         ref: 'Department',
+        required: true,
     },     
     details: {
         type: String,

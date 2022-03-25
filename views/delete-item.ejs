@@ -1,8 +1,9 @@
 <%- include('partials/_top') %>
 <main class="min-h-screen bg-base-100 w-full py-6 px-10 uppercase">
-    <div class="prose pb-4">
-        <h1>Delete Item: <%= item.name %></h1>
-        <h2>Do you really want to delete this item?</h2>
+    <h1 class="text-4xl font-bold mb-6">Delete Item: <%= item.name %></h1>
+    <div class="mb-4 alert alert-warning justify-start">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        <h2 class="text-2xl font-bold">Do you really want to delete this item?</h2>
     </div>
     <form action="" method="post">
         <input type="hidden" name="itemid" required value="<%= item._id %>">
