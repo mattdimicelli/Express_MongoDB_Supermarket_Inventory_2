@@ -1,11 +1,11 @@
 <%- include('partials/_top') %>
 <main class="min-h-screen bg-base-100 w-full py-6 px-10">
     <% if (items.length > 0) { %>
-        <div class="prose pb-4 mb-4">
+        <div class="prose pb-4 mb-4 uppercase">
             <h1>Delete Department: <%= dept.name %></h1>
             <h2>Delete the following items before attempting to delete this department</h2>
         </div>
-        <table class="table table-zebra table-compact mb-4">
+        <table class="table table-zebra table-compact mb-4 uppercase">
             <caption class="text-2xl font-bold">Items:</caption>
             <thead>
                 <tr>
@@ -35,13 +35,13 @@
             </tbody>
         </table>
    <% } else { %>
-        <div class="prose pb-4">
+        <div class="prose pb-4 uppercase">
             <h1>Delete Department: <%= dept.name %></h1>
             <h2>Do you really want to delete this department?</h2>
         </div>
         <form action="" method="post">
             <input type="hidden" name="deptid" required value="<%= dept._id %>">
-            <button type="submit" class="btn btn-warning">Delete</button>
+            <button type="submit" class="btn btn-warning uppercase">Delete</button>
         </form>
   <% } %>
 </main>
