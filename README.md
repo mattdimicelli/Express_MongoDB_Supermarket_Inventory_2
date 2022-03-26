@@ -28,7 +28,7 @@ which should be apparent if you visit the application.
 
 - Form validation on the front-end (via HTML's built-in validation) and the back-end (via built-in and custom Mongoose schema validators)
 - Structured per the Model-View-Controller (MVC) paradigm, as well as per Express-generator
-- The HTML is 100% custom-made.  Much of the DaisyUI elements have custom modifications to the CSS
+- The HTML is 100% custom-made.  Many of the DaisyUI elements that are included were further customized with CSS
 - Modern use of async/await for asynchronous code
 - Custom-made npm scripts
 - Other third-party modules, such as Helmet for enhanced security
