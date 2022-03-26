@@ -36,4 +36,6 @@ which should be apparent if you visit the application.
 ### What I learned
 
 Note for improvement: when deploying this site, I discovered that Heroku's free tier does not provide
-a static IP address.  This is problematic in regards to MongoDB since MongoDB requires that 
+a static IP address.  This is problematic in regards to MongoDB since MongoDB requires that any client
+that accesses the database has it's IP address in a whitelist.  Despite trying several programs/services such as Fixie, which provide you with a static IP address to use for this purpose, I was unable to find a work-around actually functioned.  My imperfect solution was to allow connections to MongoDB from all IP addresses.  For a commercial project or a project that requires mores security, 
+this would obviously not be sufficient and another solution would be needed.
