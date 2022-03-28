@@ -26,7 +26,7 @@ which should be apparent if you visit the application.
 
 ### Built with
 
-- Form validation on the front-end (via HTML's built-in validation) and the back-end (via built-in and custom Mongoose schema validators)
+- Form validation on the front-end (via HTML's built-in validation) and the back-end (via built-in and custom Mongoose schema validators).  Output is XML-escaped per EJS for security purposes.
 - Structured per the Model-View-Controller (MVC) paradigm, as well as per Express-generator
 - The HTML is 100% custom-made.  Many of the DaisyUI elements that are included were further customized with CSS
 - Modern use of async/await for asynchronous code
