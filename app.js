@@ -10,6 +10,7 @@ const departmentRouter = require('./routes/departments.js');
 const compression = require('compression');
 const helmet = require('helmet');
 
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var app = express();

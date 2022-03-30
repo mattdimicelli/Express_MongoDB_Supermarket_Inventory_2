@@ -8,7 +8,7 @@
   "scripts": {
     "start": "DEBUG=server,app,app:* node ./bin/www",
     "build:css": "tailwindcss -i ./tailwind.css -o ./public/stylesheets/style.css",
-    "debug": "DEBUG=* nodemon ./bin/www"
+    "debug": "DEBUG=* node ./bin/www"
   },
   "dependencies": {
     "chalk": "4.x",
@@ -16,6 +16,7 @@
     "cookie-parser": "~1.4.4",
     "daisyui": "^2.11.0",
     "debug": "~2.6.9",
+    "dotenv": "^16.0.0",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "helmet": "^5.0.2",
@@ -30,10 +31,6 @@
   },
   "nodemonConfig": {
     "delay": 2500,
-    "restartable": "rs",
-    "env": {
-      "PORT": 4000,
-      "MONGODB_URI": "mongodb+srv://supermarket_2_mrd2689a:Kffm2YrahJ5%26Zh@supermarket-2.znxwh.mongodb.net/supermarket-2?retryWrites=true&w=majority"
-    }
+    "restartable": "rs"
   }
 }
