@@ -6,8 +6,8 @@
 An inventory system for a supermarket which allows CRUD operations for the supermarket's products 
 and departments.  This is a multi-page app built with MongoDB & Mongoose, Express, and Node.js.  
 EJS was chosen as the templating engine, and Tailwind CSS along with DaisyUI were used as a 
-front-end framework.  Heroku was chosen for the hosting of the server.  In addition to the main 
-application, I wrote a script to populate the database with some sample items and departments,
+front-end framework.  I originally hosted this on Heroku but moved it to Render when Heroku eliminated it's free tier.
+In addition to the main application, I wrote a script to populate the database with some sample items and departments,
 which should be apparent if you visit the application.
 
 
