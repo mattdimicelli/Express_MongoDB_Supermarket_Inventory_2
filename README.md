@@ -19,7 +19,7 @@ which should be apparent if you visit the application.
 
 ### Links
 
-- [Live site](https://supermarket-inventory.herokuapp.com/)
+- [Live site](https://supergroceries-inventory.onrender.com/)
 - [Repo](https://github.com/mattdimicelli/Express_MongoDB_Supermarket_Inventory_2)
 
 ## My process
